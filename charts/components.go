@@ -140,14 +140,14 @@ type TBFeature struct {
 // TextStyleOpts is the option set for a text style component.
 type TextStyleOpts struct {
 	// 文字字体颜色
-	Color string `json:"color,omitempty"`
+	Color string `json:"color,omitempty" structs:"color,omitempty"`
 	// 文字字体的风格
 	// 可选  'normal', 'italic', 'oblique'
-	FontStyle string `json:"fontStyle,omitempty"`
+	FontStyle string `json:"fontStyle,omitempty" structs:"fontStyle,omitempty"`
 	// 字体大小
-	FontSize int `json:"fontSize,omitempty"`
+	FontSize int `json:"fontSize,omitempty" structs:"fontSize,omitempty"`
 	// 递归结构，为了兼容 wordCloud
-	Normal *TextStyleOpts `json:"normal,omitempty"`
+	Normal *TextStyleOpts `json:"normal,omitempty" structs:"normal,omitempty"`
 }
 
 func (TextStyleOpts) MarkSeries() {}
@@ -155,18 +155,18 @@ func (TextStyleOpts) MarkSeries() {}
 // LineStyleOpts is the option set for a link style component.
 type LineStyleOpts struct {
 	// 线的颜色
-	Color string `json:"color,omitempty"`
+	Color string `json:"color,omitempty" structs:"color,omitempty"`
 	// 线的宽度
 	// 默认 1
-	Width float32 `json:"width,omitempty"`
+	Width float32 `json:"width,omitempty" structs:"width,omitempty"`
 	// 线的类型，可选 "solid", "dashed", "dotted"
 	// 默认 "solid"
-	Type string `json:"type,omitempty"`
+	Type string `json:"type,omitempty" structs:"type,omitempty"`
 	// 线的透明度。支持从 0 到 1 的数字，为 0 时不绘制线
-	Opacity float32 `json:"opacity,omitempty"`
+	Opacity float32 `json:"opacity,omitempty" structs:"opacity,omitempty"`
 	// 线的曲度，支持从 0 到 1 的值，值越大曲度越大
 	// 默认 0
-	Curveness float32 `json:"curveness,omitempty"`
+	Curveness float32 `json:"curveness,omitempty" structs:"curveness,omitempty"`
 }
 
 func (LineStyleOpts) MarkSeries() {}
@@ -174,9 +174,9 @@ func (LineStyleOpts) MarkSeries() {}
 // AreaStyleOpts is the option set for an area style component.
 type AreaStyleOpts struct {
 	// 填充区域的颜色
-	Color string `json:"color,omitempty"`
+	Color string `json:"color,omitempty" structs:"color,omitempty"`
 	// 填充区域的透明度。支持从 0 到 1 的数字，为 0 时不填充区域
-	Opacity float32 `json:"opacity,omitempty"`
+	Opacity float32 `json:"opacity,omitempty" structs:"opacity,omitempty"`
 }
 
 func (AreaStyleOpts) MarkSeries() {}
@@ -220,19 +220,19 @@ func (dz DataZoomOptsList) Len() int {
 // 用于进行『视觉编码』，也就是将数据映射到视觉元素（视觉通道）
 type VisualMapOpts struct {
 	// 映射类型，可选 "continuous", "piecewise"
-	Type string `json:"type,omitempty" default:"continuous"`
+	Type string `json:"type,omitempty" default:"continuous" structs:"type,omitempty" default:"continuous"`
 	// 是否显示拖拽用的手柄（手柄能拖拽调整选中范围）
-	Calculable bool `json:"calculable"`
+	Calculable bool `json:"calculable" structs:"calculable"`
 	// VisualMap 组件的允许的最小值
-	Min float32 `json:"min,omitempty"`
+	Min float32 `json:"min,omitempty" structs:"min,omitempty"`
 	// VisualMap 组件的允许的最大值
-	Max float32 `json:"max,omitempty"`
+	Max float32 `json:"max,omitempty" structs:"max,omitempty"`
 	// 指定手柄对应数值的位置。range 应在 min max 范围内
-	Range []float32 `json:"range,omitempty"`
+	Range []float32 `json:"range,omitempty" structs:"range,omitempty"`
 	// 两端的文本，如 ['High', 'Low']
-	Text []string `json:"text,omitempty"`
+	Text []string `json:"text,omitempty" structs:"text,omitempty"`
 	// 定义在选中范围中的视觉元素
-	InRange VMInRange `json:"inRange,omitempty"`
+	InRange VMInRange `json:"inRange,omitempty" structs:"inRange,omitempty"`
 }
 
 func (VisualMapOpts) MarkGlobal() {}
@@ -248,28 +248,28 @@ func (vm VisualMapOptsList) Len() int {
 // VMInRange is a visual map instance in a range.
 type VMInRange struct {
 	// 图元的颜色
-	Color []string `json:"color,omitempty"`
+	Color []string `json:"color,omitempty" structs:"color,omitempty"`
 	// 图元的图形类别
 	// 可选 'circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow', 'none'
-	Symbol string `json:"symbol,omitempty"`
+	Symbol string `json:"symbol,omitempty" structs:"symbol,omitempty"`
 	// 图元的大小
-	SymbolSize float32 `json:"symbolSize,omitempty"`
+	SymbolSize float32 `json:"symbolSize,omitempty" structs:"symbolSize,omitempty"`
 }
 
 // SplitAreaOpts is the option set for a split area.
 type SplitAreaOpts struct {
 	// 是否显示分隔区域
-	Show bool `json:"show"`
+	Show bool `json:"show" structs:"show"`
 	// 风格区域风格
-	AreaStyle AreaStyleOpts `json:"areaStyle,omitempty"`
+	AreaStyle AreaStyleOpts `json:"areaStyle,omitempty" structs:"areaStyle,omitempty"`
 }
 
 // SplitLineOpts is the option set for a split line.
 type SplitLineOpts struct {
 	// 是否显示分隔线
-	Show bool `json:"show"`
+	Show bool `json:"show" structs:"show"`
 	// 分割线风格
-	LineStyle LineStyleOpts `json:"lineStyle,omitempty"`
+	LineStyle LineStyleOpts `json:"lineStyle,omitempty" structs:"lineStyle,omitempty"`
 }
 
 // XAxisOpts is the option set for X axis.
