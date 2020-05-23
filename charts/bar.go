@@ -94,3 +94,77 @@ func (c *Bar) Render(w ...io.Writer) error {
 	c.validateOpts()
 	return renderToWriter(c, "chart", []string{}, w...)
 }
+
+// This function takes a given chart and generates the set of options in a
+// JS compatible Go struct which can be passed to the setOption method within
+// the echart library
+func (c *Bar) GenerateOptions() (r map[string]interface{}) {
+
+	//let myChart___x__{{ .ChartID }}__x__ = echarts.init(document.getElementById('{{ .ChartID }}'), "{{ .Theme }}");
+	//let option___x__{{ .ChartID }}__x__ = {
+	r = make(map[string]interface{})
+
+	//title: {{ .TitleOpts  }},
+	r["title"] = generateTitleOpts(c.TitleOpts)
+
+	//tooltip: {{ .TooltipOpts }},
+	r["tooltip"] = generateTooltipOpts(c.TooltipOpts)
+
+	//legend: {{ .LegendOpts }},
+	r["legend"] = generateLegend(c.LegendOpts)
+
+	//{{- if .ToolboxOpts.Show }}
+	//toolbox: {{ .ToolboxOpts }},
+	//{{- end }}
+	// TODO - solve
+	//if c.ToolboxOpts.Show {
+	//r["toolbox"] = generateToolboxOpts(c.ToolboxOpts)
+	//}
+
+	//{{- if gt .DataZoomOptsList.Len 0 }}
+	//dataZoom:{{ .DataZoomOptsList }},
+	//{{- end }}
+	if len(c.DataZoomOptsList) > 0 {
+		r["dataZoom"] = generateDataZoomOpts(c.DataZoomOptsList)
+	}
+
+	//{{- if gt .VisualMapOptsList.Len 0 }}
+	//visualMap:{{ .VisualMapOptsList }},
+	//{{- end }}
+	if len(c.VisualMapOptsList) > 0 {
+		r["visualMap"] = generateVisualMapOptsList(c.VisualMapOptsList)
+	}
+
+	//{{- if .HasXYAxis }}
+	//xAxis: {{ .XAxisOptsList }},
+	//yAxis: {{ .YAxisOptsList }},
+	//{{- end }}
+	if c.HasXYAxis {
+		r["xAxis"] = generateXAxis(c.XAxisOptsList)
+		r["yAxis"] = generateYAxis(c.YAxisOptsList)
+	}
+
+	//series: [
+	//{{ range .Series }}
+	//{{- . }},
+	//{{ end -}}
+	//],
+	r["series"] = generateSeries(c.Series)
+
+	//{{- if eq .Theme "white" }}
+	//color: {{ .Colors }},
+	//{{- end }}
+	if c.Theme == "white" {
+		r["color"] = generateColors(c.Colors)
+	}
+
+	//{{- if ne .BackgroundColor "" }}
+	//backgroundColor: {{ .BackgroundColor }}
+	//{{- end }}
+	if c.BackgroundColor != "" {
+		r["backgroundColor"] = generateBackgroundColors(c.BackgroundColor)
+	}
+
+	//};
+	return
+}

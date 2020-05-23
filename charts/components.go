@@ -3,37 +3,37 @@ package charts
 // TitleOpts is the option set for a title component.
 type TitleOpts struct {
 	// 主标题
-	Title string `json:"text,omitempty"`
+	Title string `json:"text,omitempty" structs:"text,omitempty"`
 	// 主标题样式配置项
-	TitleStyle TextStyleOpts `json:"textStyle,omitempty"`
+	TitleStyle TextStyleOpts `json:"textStyle,omitempty" structs:"textStyle,omitempty"`
 	// 副标题
-	Subtitle string `json:"subtext,omitempty"`
+	Subtitle string `json:"subtext,omitempty" structs:"subtext,omitempty"`
 	// 副标题样式配置项
-	SubtitleStyle TextStyleOpts `json:"subtextStyle,omitempty"`
+	SubtitleStyle TextStyleOpts `json:"subtextStyle,omitempty" structs:"subtextStyle,omitempty"`
 	// 主标题文本超链接
-	Link string `json:"link,omitempty"`
+	Link string `json:"link,omitempty" structs:"link,omitempty"`
 	// 指定窗口打开主标题超链接
 	// 'self' 当前窗口打开
 	// 'blank' 新窗口打开
-	Target string `json:"target,omitempty"`
+	Target string `json:"target,omitempty" structs:"target,omitempty"`
 	// grid 组件离容器上侧的距离。
 	// top 的值可以是像 20 这样的具体像素值，可以是像 '20%' 这样相对于容器高宽的百分比
 	// 也可以是 'top', 'middle', 'bottom'。
 	// 如果 top 的值为'top', 'middle', 'bottom'，组件会根据相应的位置自动对齐
-	Top string `json:"top,omitempty"`
+	Top string `json:"top,omitempty" structs:"top,omitempty"`
 	// 图例组件离容器下侧的距离。
 	// bottom 的值可以是像 20 这样的具体像素值，可以是像 '20%' 这样相对于容器高宽的百分比。
 	// 默认自适应。
-	Bottom string `json:"bottom,omitempty"`
+	Bottom string `json:"bottom,omitempty" structs:"bottom,omitempty"`
 	// 图例组件离容器左侧的距离。
 	// left 的值可以是像 20 这样的具体像素值，可以是像 '20%' 这样相对于容器高宽的百分比
 	// 也可以是 'left', 'center', 'right'。
 	// 如果 left 的值为'left', 'center', 'right'，组件会根据相应的位置自动对齐。
-	Left string `json:"left,omitempty"`
+	Left string `json:"left,omitempty" structs:"left,omitempty"`
 	// 图例组件离容器右侧的距离。
 	// right 的值可以是像 20 这样的具体像素值，可以是像 '20%' 这样相对于容器高宽的百分比。
 	// 默认自适应。
-	Right string `json:"right,omitempty"`
+	Right string `json:"right,omitempty" structs:"right,omitempty"`
 }
 
 func (TitleOpts) MarkGlobal() {}
@@ -44,27 +44,27 @@ type LegendOpts struct {
 	// left 的值可以是像 20 这样的具体像素值，可以是像 '20%' 这样相对于容器高宽的百分比
 	// 也可以是 'left', 'center', 'right'。
 	// 如果 left 的值为'left', 'center', 'right'，组件会根据相应的位置自动对齐。
-	Left string `json:"left,omitempty"`
+	Left string `json:"left,omitempty" structs:"left,omitempty"`
 	// 图例组件离容器上侧的距离。
 	// top 的值可以是像 20 这样的具体像素值，可以是像 '20%' 这样相对于容器高宽的百分比
 	// 也可以是 'top', 'middle', 'bottom'。
 	// 如果 top 的值为'top', 'middle', 'bottom'，组件会根据相应的位置自动对齐。
-	Top string `json:"top,omitempty"`
+	Top string `json:"top,omitempty" structs:"top,omitempty"`
 	// 图例组件离容器右侧的距离。
 	// right 的值可以是像 20 这样的具体像素值，可以是像 '20%' 这样相对于容器高宽的百分比。
 	// 默认自适应。
-	Right string `json:"right,omitempty"`
+	Right string `json:"right,omitempty" structs:"right,omitempty"`
 	// 图例组件离容器下侧的距离。
 	// bottom 的值可以是像 20 这样的具体像素值，可以是像 '20%' 这样相对于容器高宽的百分比。
 	// 默认自适应。
-	Bottom string `json:"bottom,omitempty"`
+	Bottom string `json:"bottom,omitempty" structs:"bottom,omitempty"`
 	// Legend 数据项
 	// 如果需要隐藏 Legend 则把 Data 设置为 []string{}
-	Data interface{} `json:"data,omitempty"`
+	Data interface{} `json:"data,omitempty" structs:"data,omitempty"`
 	// 除此之外也可以设成 "single" 或者 "multiple" 使用单选或者多选模式。默认 "multiple"
-	SelectedMode string `json:"selectedMode,omitempty"`
+	SelectedMode string `json:"selectedMode,omitempty" structs:"selectedMode,omitempty"`
 	// 图例的公用文本样式
-	TextStyle TextStyleOpts `json:"textStyle,omitempty"`
+	TextStyle TextStyleOpts `json:"textStyle,omitempty" structs:"textStyle,omitempty"`
 }
 
 func (LegendOpts) MarkGlobal() {}
@@ -72,18 +72,18 @@ func (LegendOpts) MarkGlobal() {}
 // TooltipOpts is the option set for a tooltip component.
 type TooltipOpts struct {
 	// 是否显示提示框
-	Show bool `json:"show,omitempty"`
+	Show bool `json:"show,omitempty" structs:"show,omitempty"`
 	// 触发类型。
 	// "item": 数据项图形触发，主要在散点图，饼图等无类目轴的图表中使用。
 	// "axis": 坐标轴触发，主要在柱状图，折线图等会使用类目轴的图表中使用。
 	// "none": 什么都不触发。
-	Trigger string `json:"trigger,omitempty"`
+	Trigger string `json:"trigger,omitempty" structs:"trigger,omitempty"`
 	// 提示框触发的条件，可选：
 	// "mousemove": 鼠标移动时触发。
 	// "click": 鼠标点击时触发。
 	// "mousemove|click": 同时鼠标移动和点击时触发。
 	// "none": 不在 "mousemove" 或 "click" 时触发
-	TriggerOn string `json:"triggerOn,omitempty"`
+	TriggerOn string `json:"triggerOn,omitempty" structs:"triggerOn,omitempty"`
 	// 1, 字符串模板
 	// 模板变量有 {a}, {b}，{c}，{d}，{e}，分别表示系列名，数据名，数据值等。
 	// 在 trigger 为 'axis' 的时候，会有多个系列的数据，此时可以通过 {a0}, {a1}, {a2}
@@ -110,7 +110,7 @@ type TooltipOpts struct {
 	//    color: string,		// 数据图形的颜色
 	//    percent: number,		// 饼图的百分比
 	// }
-	Formatter string `json:"formatter,omitempty"`
+	Formatter string `json:"formatter,omitempty" structs:"formatter,omitempty"`
 }
 
 func (TooltipOpts) MarkGlobal() {}
@@ -118,9 +118,9 @@ func (TooltipOpts) MarkGlobal() {}
 // ToolboxOpts is the option set for a toolbox component.
 type ToolboxOpts struct {
 	// 是否显示工具栏组件
-	Show bool `json:"show"`
+	Show bool `json:"show" structs:"show"`
 	// 工具箱功能种类，不支持自定义
-	TBFeature `json:"feature"`
+	TBFeature `json:"feature" structs:"feature"`
 }
 
 func (ToolboxOpts) MarkGlobal() {}
@@ -128,13 +128,13 @@ func (ToolboxOpts) MarkGlobal() {}
 // TBFeature is a feature component under toolbox.
 type TBFeature struct {
 	// 保存为图片
-	SaveAsImage struct{} `json:"saveAsImage"`
+	SaveAsImage struct{} `json:"saveAsImage" structs:"saveAsImage"`
 	// 数据区域缩放。目前只支持直角坐标系的缩放
-	DataZoom struct{} `json:"dataZoom"`
+	DataZoom struct{} `json:"dataZoom" structs:"dataZoom"`
 	// 数据视图工具，可以展现当前图表所用的数据，编辑后可以动态更新
-	DataView struct{} `json:"dataView"`
+	DataView struct{} `json:"dataView" structs:"dataView"`
 	// 配置项还原
-	Restore struct{} `json:"restore"`
+	Restore struct{} `json:"restore" structs:"restore"`
 }
 
 // TextStyleOpts is the option set for a text style component.
@@ -184,26 +184,26 @@ func (AreaStyleOpts) MarkSeries() {}
 // DataZoomOpts is the option set for a zoom component.
 type DataZoomOpts struct {
 	// 缩放类型，可选 "inside", "slider"
-	Type string `json:"type" default:"inside"`
+	Type string `json:"type" default:"inside" structs:"type" default:"inside"`
 	// 数据窗口范围的起始百分比。范围是：0 ~ 100。表示 0% ~ 100%。
 	// 默认: 0
-	Start float32 `json:"start,omitempty"`
+	Start float32 `json:"start,omitempty" structs:"start,omitempty"`
 	// 数据窗口范围的结束百分比。范围是：0 ~ 100。
 	// 默认: 100
-	End float32 `json:"end,omitempty"`
+	End float32 `json:"end,omitempty" structs:"end,omitempty"`
 	// 触发视图刷新的频率。单位为毫秒（ms）。
 	// 默认: 100
-	Throttle float32 `json:"throttle,omitempty"`
+	Throttle float32 `json:"throttle,omitempty" structs:"throttle,omitempty"`
 	// 设置 dataZoom 组件控制的 X 轴
 	// 不指定时，当 dataZoom-inside.orient 为 'horizontal'时，默认控制和 dataZoom 平行的第一个 xAxis。
 	// 但是不建议使用默认值，建议显式指定。
 	// 如果是 number 表示控制一个轴，如果是 Array 表示控制多个轴。
-	XAxisIndex interface{} `json:"xAxisIndex,omitempty"`
+	XAxisIndex interface{} `json:"xAxisIndex,omitempty" structs:"xAxisIndex,omitempty"`
 	// 设置 dataZoom 组件控制的 Y 轴
 	// 不指定时，当 dataZoom-slider.orient 为 'vertical'时，默认控制和 dataZoom 平行的第一个 yAxis。
 	// 但是不建议使用默认值，建议显式指定。
 	// 如果是 number 表示控制一个轴，如果是 Array 表示控制多个轴。
-	YAxisIndex interface{} `json:"yAxisIndex,omitempty"`
+	YAxisIndex interface{} `json:"yAxisIndex,omitempty" structs:"yAxisIndex,omitempty"`
 }
 
 func (DataZoomOpts) MarkGlobal() {}
@@ -275,40 +275,40 @@ type SplitLineOpts struct {
 // XAxisOpts is the option set for X axis.
 type XAxisOpts struct {
 	// X 轴名称
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" structs:"name,omitempty"`
 	// X 坐标轴类型，可选：
 	// "value"：数值轴，适用于连续数据。
 	// "category" 类目轴，适用于离散的类目数据，为该类型时必须通过 data 设置类目数据。
 	// "time" 时间轴，适用于连续的时序数据，与数值轴相比时间轴带有时间的格式化，
 	// 在刻度计算上也有所不同，例如会根据跨度的范围来决定使用月，星期，日还是小时范围的刻度。
 	// "log" 对数轴。适用于对数数据。
-	Type string `json:"type,omitempty"`
+	Type string `json:"type,omitempty" structs:"type,omitempty"`
 	// 是否显示 X 轴
-	Show bool `json:"show,omitempty"`
+	Show bool `json:"show,omitempty" structs:"show,omitempty"`
 	// X 轴数据项
-	Data interface{} `json:"data,omitempty"`
+	Data interface{} `json:"data,omitempty" structs:"data,omitempty"`
 	// X 坐标轴的分割段数，需要注意的是这个分割段数只是个预估值，
 	// 最后实际显示的段数会在这个基础上根据分割后坐标轴刻度显示的易读程度作调整。
 	// 在类目轴中无效
-	SplitNumber int `json:"splitNumber,omitempty"`
+	SplitNumber int `json:"splitNumber,omitempty" structs:"splitNumber,omitempty"`
 	// 只在数值轴中（type: 'value'）有效。
 	// 是否是脱离 0 值比例。设置成 true 后坐标刻度不会强制包含零刻度。在双数值轴的散点图中比较有用。
 	// 在设置 min 和 max 之后该配置项无效
 	// 默认为 false
-	Scale bool `json:"scale,omitempty"`
+	Scale bool `json:"scale,omitempty" structs:"scale,omitempty"`
 	// X 坐标轴刻度最小值
 	// 可以设置成特殊值 'dataMin'，此时取数据在该轴上的最小值作为最小刻度，数值轴有效
-	Min interface{} `json:"min,omitempty"`
+	Min interface{} `json:"min,omitempty" structs:"min,omitempty"`
 	// X 坐标轴刻度最大值
 	// 可以设置成特殊值 'dataMax'，此时取数据在该轴上的最小值作为最小刻度，数值轴有效
-	Max interface{} `json:"max,omitempty"`
+	Max interface{} `json:"max,omitempty" structs:"max,omitempty"`
 	// X 轴所在的 grid 的索引
 	// 默认 0
-	GridIndex int `json:"gridIndex,omitempty"`
+	GridIndex int `json:"gridIndex,omitempty" structs:"gridIndex,omitempty"`
 	// X 轴在 grid 区域中的分隔区域配置项
-	SplitArea SplitAreaOpts `json:"splitArea,omitempty"`
+	SplitArea SplitAreaOpts `json:"splitArea,omitempty" structs:"splitArea,omitempty"`
 	// X 轴在 grid 区域中的分隔线配置项
-	SplitLine SplitLineOpts `json:"splitLine,,omitempty"`
+	SplitLine SplitLineOpts `json:"splitLine,,omitempty" structs:"splitLine,,omitempty"`
 }
 
 func (XAxisOpts) MarkGlobal() {}

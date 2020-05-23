@@ -200,69 +200,69 @@ func (ItemStyleOpts) MarkSeries() {}
 
 type singleSeries struct {
 	// 系列名称
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" structs:"name,omitempty"`
 	// 系列类型
-	Type string `json:"type"`
+	Type string `json:"type" structs:"type"`
 
 	// Rectangular charts
-	Stack      string `json:"stack,omitempty"`
-	XAxisIndex int    `json:"xAxisIndex,omitempty"`
-	YAxisIndex int    `json:"yAxisIndex,omitempty"`
+	Stack      string `json:"stack,omitempty" structs:"stack,omitempty"`
+	XAxisIndex int    `json:"xAxisIndex,omitempty" structs:"xAxisIndex,omitempty"`
+	YAxisIndex int    `json:"yAxisIndex,omitempty" structs:"yAxisIndex,omitempty"`
 
 	// Bar chart
-	BarGap         string `json:"barGap,omitempty"`
-	BarCategoryGap string `json:"barCategoryGap,omitempty"`
+	BarGap         string `json:"barGap,omitempty" structs:"barGap,omitempty"`
+	BarCategoryGap string `json:"barCategoryGap,omitempty" structs:"barCategoryGap,omitempty"`
 
 	// Bar3D chart
-	Shading string `json:"shading,omitempty"`
+	Shading string `json:"shading,omitempty" structs:"shading,omitempty"`
 
 	// Graph charts
-	Links              interface{}     `json:"links,omitempty"`
-	Layout             string          `json:"layout,omitempty"`
-	Force              GraphForce      `json:"force,omitempty"`
-	Categories         []GraphCategory `json:"categories,omitempty"`
-	Roam               bool            `json:"roam,omitempty"`
-	FocusNodeAdjacency bool            `json:"focusNodeAdjacency,omitempty"`
+	Links              interface{}     `json:"links,omitempty" structs:"links,omitempty"`
+	Layout             string          `json:"layout,omitempty" structs:"layout,omitempty"`
+	Force              GraphForce      `json:"force,omitempty" structs:"force,omitempty"`
+	Categories         []GraphCategory `json:"categories,omitempty" structs:"categories,omitempty"`
+	Roam               bool            `json:"roam,omitempty" structs:"roam,omitempty"`
+	FocusNodeAdjacency bool            `json:"focusNodeAdjacency,omitempty" structs:"focusNodeAdjacency,omitempty"`
 
 	// Line chart
-	Step         bool `json:"step,omitempty"`
-	Smooth       bool `json:"smooth,omitempty"`
-	ConnectNulls bool `json:"connectNulls,omitempty"`
+	Step         bool `json:"step,omitempty" structs:"step,omitempty"`
+	Smooth       bool `json:"smooth,omitempty" structs:"smooth,omitempty"`
+	ConnectNulls bool `json:"connectNulls,omitempty" structs:"connectNulls,omitempty"`
 
 	// Liquid chart
-	LiquidOutlineOpts `json:"outline,omitempty"`
-	IsWaveAnimation   bool `json:"waveAnimation"`
+	LiquidOutlineOpts `json:"outline,omitempty" structs:"outline,omitempty"`
+	IsWaveAnimation   bool `json:"waveAnimation" structs:"waveAnimation"`
 
 	// Map chart
-	MapType     string `json:"map,omitempty"`
-	CoordSystem string `json:"coordinateSystem,omitempty"`
+	MapType     string `json:"map,omitempty" structs:"map,omitempty"`
+	CoordSystem string `json:"coordinateSystem,omitempty" structs:"coordinateSystem,omitempty"`
 
 	// Pie chart
-	RoseType interface{} `json:"roseType,omitempty"`
-	Center   interface{} `json:"center,omitempty"`
-	Radius   interface{} `json:"radius,omitempty"`
+	RoseType interface{} `json:"roseType,omitempty" structs:"roseType,omitempty"`
+	Center   interface{} `json:"center,omitempty" structs:"center,omitempty"`
+	Radius   interface{} `json:"radius,omitempty" structs:"radius,omitempty"`
 
 	// Scatter chart
-	SymbolSize float32 `json:"symbolSize,omitempty"`
+	SymbolSize float32 `json:"symbolSize,omitempty" structs:"symbolSize,omitempty"`
 
 	// WordCloud chart
-	Shape         string    `json:"shape,omitempty"`
-	SizeRange     []float32 `json:"sizeRange,omitempty"`
-	RotationRange []float32 `json:"rotationRange,omitempty"`
+	Shape         string    `json:"shape,omitempty" structs:"shape,omitempty"`
+	SizeRange     []float32 `json:"sizeRange,omitempty" structs:"sizeRange,omitempty"`
+	RotationRange []float32 `json:"rotationRange,omitempty" structs:"rotationRange,omitempty"`
 
 	// 系列数据项
-	Data interface{} `json:"data"`
+	Data interface{} `json:"data" structs:"data"`
 
 	// 系列配置项
-	ItemStyleOpts    `json:"itemStyle,omitempty"`
-	LabelTextOpts    `json:"label,omitempty"`
-	EmphasisOpts     `json:"emphasis,omitempty"`
-	MarkLine         `json:"markLine,omitempty"`
-	MarkPoint        `json:"markPoint,omitempty"`
-	RippleEffectOpts `json:"rippleEffect,omitempty"`
-	LineStyleOpts    `json:"lineStyle,omitempty"`
-	AreaStyleOpts    `json:"areaStyle,omitempty"`
-	TextStyleOpts    `json:"textStyle,omitempty"`
+	ItemStyleOpts    `json:"itemStyle,omitempty" structs:"itemStyle,omitempty"`
+	LabelTextOpts    `json:"label,omitempty" structs:"label,omitempty"`
+	EmphasisOpts     `json:"emphasis,omitempty" structs:"emphasis,omitempty"`
+	MarkLine         `json:"markLine,omitempty" structs:"markLine,omitempty"`
+	MarkPoint        `json:"markPoint,omitempty" structs:"markPoint,omitempty"`
+	RippleEffectOpts `json:"rippleEffect,omitempty" structs:"rippleEffect,omitempty"`
+	LineStyleOpts    `json:"lineStyle,omitempty" structs:"lineStyle,omitempty"`
+	AreaStyleOpts    `json:"areaStyle,omitempty" structs:"areaStyle,omitempty"`
+	TextStyleOpts    `json:"textStyle,omitempty" structs:"textStyle,omitempty"`
 }
 
 // 设置 singleSeries 配置项
