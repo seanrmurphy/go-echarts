@@ -8,25 +8,8 @@ import (
 	"github.com/fatih/structs"
 )
 
-func generateTitleOpts(o TitleOpts) interface{} {
-	m := structs.Map(o)
-	//r := js.ValueOf(m)
-	//r, _ := json.Marshal(o)
-	return m
-}
-
-func generateTooltipOpts(o TooltipOpts) interface{} {
-	m := structs.Map(o)
-	//r := js.ValueOf(m)
-	return m
-}
-
-func generateLegend(o LegendOpts) interface{} {
-	m := structs.Map(o)
-	//r := jsmValueOf(m)
-	return m
-}
-
+// Need to check the following to see if we need specific function for them or
+// not
 func generateGeo(c int) interface{} {
 	return c
 }
@@ -49,21 +32,20 @@ func generateSingleAxis(c int) interface{} {
 
 func generateToolboxOpts(o ToolboxOpts) interface{} {
 	m := structs.Map(o)
-	log.Printf("toolboxopts = %v\n", m)
-	r := js.ValueOf(m)
+
 	return r
 }
 
 func generateDataZoomOpts(o DataZoomOptsList) interface{} {
 	r := make([]interface{}, len(o))
-	for i, op := range o {
-		m := structs.Map(op)
-		jsVal := js.ValueOf(m)
-		r[i] = jsVal
+	for i, opt := range o {
+		m := structs.Map(opt)
+		r[i] = m
 	}
 	return r
 }
 
+// TODO - fix thie
 func generateVisualMapOptsList(o VisualMapOptsList) interface{} {
 	r, _ := json.Marshal(o)
 	return r
@@ -73,8 +55,22 @@ func generateXAxis(o []XAxisOpts) interface{} {
 	r := make([]interface{}, len(o))
 	for i, op := range o {
 		m := structs.Map(op)
-		jsVal := js.ValueOf(m)
-		r[i] = jsVal
+		switch op.Data.(type) {
+		case []int:
+			d := make([]interface{}, len(op.Data.([]int)))
+			for j, q := range op.Data.([]int) {
+				d[j] = q
+			}
+			m["data"] = d
+		case []string:
+			d := make([]interface{}, len(op.Data.([]string)))
+			for j, q := range op.Data.([]string) {
+				d[j] = q
+			}
+			m["data"] = d
+		}
+		//jsVal := js.ValueOf(m)
+		r[i] = m
 	}
 	return r
 }
@@ -83,8 +79,22 @@ func generateYAxis(o []YAxisOpts) interface{} {
 	r := make([]interface{}, len(o))
 	for i, op := range o {
 		m := structs.Map(op)
-		jsVal := js.ValueOf(m)
-		r[i] = jsVal
+		switch op.Data.(type) {
+		case []int:
+			d := make([]interface{}, len(op.Data.([]int)))
+			for _, q := range op.Data.([]int) {
+				d[i] = q
+			}
+			m["data"] = d
+		case []string:
+			d := make([]interface{}, len(op.Data.([]string)))
+			for _, q := range op.Data.([]string) {
+				d[i] = q
+			}
+			m["data"] = d
+		}
+		//jsVal := js.ValueOf(m)
+		r[i] = m
 	}
 	return r
 }
@@ -101,18 +111,17 @@ func generateZAxis3D(c int) interface{} {
 	return c
 }
 
+// s is an array of singleSeries
 func generateSeries(s Series) interface{} {
 	r := make([]interface{}, len(s))
-	for i, op := range s {
-		m := structs.Map(op)
-		log.Printf("map = %v\n", m)
-		d := make([]interface{}, len(op.Data.([]int)))
-		for _, q := range op.Data.([]int) {
-			d[i] = q
+	for i, series := range s {
+		m := structs.Map(series)
+		d := make([]interface{}, len(series.Data.([]int)))
+		for j, q := range series.Data.([]int) {
+			d[j] = q
 		}
 		m["data"] = d
-		jsVal := js.ValueOf(m)
-		r[i] = jsVal
+		r[i] = m
 	}
 	return r
 }

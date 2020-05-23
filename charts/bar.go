@@ -2,6 +2,8 @@ package charts
 
 import (
 	"io"
+
+	"github.com/fatih/structs"
 )
 
 // Bar represents a bar chart.
@@ -99,72 +101,41 @@ func (c *Bar) Render(w ...io.Writer) error {
 // JS compatible Go struct which can be passed to the setOption method within
 // the echart library
 func (c *Bar) GenerateOptions() (r map[string]interface{}) {
+	c.validateOpts()
 
-	//let myChart___x__{{ .ChartID }}__x__ = echarts.init(document.getElementById('{{ .ChartID }}'), "{{ .Theme }}");
-	//let option___x__{{ .ChartID }}__x__ = {
 	r = make(map[string]interface{})
 
-	//title: {{ .TitleOpts  }},
-	r["title"] = generateTitleOpts(c.TitleOpts)
+	r["title"] = structs.Map(c.TitleOpts)
+	r["tooltip"] = structs.Map(c.TooltipOpts)
+	r["legend"] = structs.Map(c.LegendOpts)
 
-	//tooltip: {{ .TooltipOpts }},
-	r["tooltip"] = generateTooltipOpts(c.TooltipOpts)
-
-	//legend: {{ .LegendOpts }},
-	r["legend"] = generateLegend(c.LegendOpts)
-
-	//{{- if .ToolboxOpts.Show }}
-	//toolbox: {{ .ToolboxOpts }},
-	//{{- end }}
-	// TODO - solve
+	// showing the toolbox component is a bit tricky right now and does not
+	// seem to be fully supported by go-echarts
 	//if c.ToolboxOpts.Show {
 	//r["toolbox"] = generateToolboxOpts(c.ToolboxOpts)
 	//}
 
-	//{{- if gt .DataZoomOptsList.Len 0 }}
-	//dataZoom:{{ .DataZoomOptsList }},
-	//{{- end }}
 	if len(c.DataZoomOptsList) > 0 {
 		r["dataZoom"] = generateDataZoomOpts(c.DataZoomOptsList)
 	}
 
-	//{{- if gt .VisualMapOptsList.Len 0 }}
-	//visualMap:{{ .VisualMapOptsList }},
-	//{{- end }}
 	if len(c.VisualMapOptsList) > 0 {
 		r["visualMap"] = generateVisualMapOptsList(c.VisualMapOptsList)
 	}
 
-	//{{- if .HasXYAxis }}
-	//xAxis: {{ .XAxisOptsList }},
-	//yAxis: {{ .YAxisOptsList }},
-	//{{- end }}
 	if c.HasXYAxis {
 		r["xAxis"] = generateXAxis(c.XAxisOptsList)
 		r["yAxis"] = generateYAxis(c.YAxisOptsList)
 	}
 
-	//series: [
-	//{{ range .Series }}
-	//{{- . }},
-	//{{ end -}}
-	//],
 	r["series"] = generateSeries(c.Series)
 
-	//{{- if eq .Theme "white" }}
-	//color: {{ .Colors }},
-	//{{- end }}
 	if c.Theme == "white" {
 		r["color"] = generateColors(c.Colors)
 	}
 
-	//{{- if ne .BackgroundColor "" }}
-	//backgroundColor: {{ .BackgroundColor }}
-	//{{- end }}
 	if c.BackgroundColor != "" {
 		r["backgroundColor"] = generateBackgroundColors(c.BackgroundColor)
 	}
-
-	//};
 	return
 }
