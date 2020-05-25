@@ -6,6 +6,7 @@ import (
 	//"syscall/js"
 
 	"github.com/fatih/structs"
+	"github.com/go-echarts/go-echarts/datatypes"
 )
 
 // Need to check the following to see if we need specific function for them or
@@ -116,11 +117,20 @@ func generateSeries(s Series) interface{} {
 	r := make([]interface{}, len(s))
 	for i, series := range s {
 		m := structs.Map(series)
-		d := make([]interface{}, len(series.Data.([]int)))
-		for j, q := range series.Data.([]int) {
-			d[j] = q
+		switch series.Data.(type) {
+		case []int:
+			d := make([]interface{}, len(series.Data.([]int)))
+			for j, q := range series.Data.([]int) {
+				d[j] = q
+			}
+			m["data"] = d
+		case []datatypes.NameValueItem:
+			d := make([]interface{}, len(series.Data.([]datatypes.NameValueItem)))
+			for j, q := range series.Data.([]datatypes.NameValueItem) {
+				d[j] = structs.Map(q)
+			}
+			m["data"] = d
 		}
-		m["data"] = d
 		r[i] = m
 	}
 	return r

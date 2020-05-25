@@ -2,16 +2,17 @@ package charts
 
 import (
 	"fmt"
-	"github.com/go-echarts/go-echarts/datatypes"
 	"io"
 	"log"
+
+	"github.com/go-echarts/go-echarts/datatypes"
 
 	"github.com/go-echarts/go-echarts/datasets"
 )
 
 // GeoComponentOpts is the option set for geo component.
 type GeoComponentOpts struct {
-	Map string `json:"map,omitempty"`
+	Map string `json:"map,omitempty" structs:"map,omitempty"`
 }
 
 // Geo represents a geo chart.
