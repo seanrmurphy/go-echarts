@@ -2,8 +2,8 @@ package charts
 
 import (
 	"encoding/json"
-	"log"
-	"syscall/js"
+	//"log"
+	//"syscall/js"
 
 	"github.com/fatih/structs"
 )
@@ -33,7 +33,7 @@ func generateSingleAxis(c int) interface{} {
 func generateToolboxOpts(o ToolboxOpts) interface{} {
 	m := structs.Map(o)
 
-	return r
+	return m
 }
 
 func generateDataZoomOpts(o DataZoomOptsList) interface{} {
