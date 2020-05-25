@@ -2,6 +2,8 @@ package charts
 
 import (
 	"io"
+
+	"github.com/fatih/structs"
 )
 
 // Graph represents a graph chart.
@@ -136,4 +138,47 @@ func (c *Graph) Render(w ...io.Writer) error {
 	c.insertSeriesColors(c.appendColor)
 	c.validateOpts()
 	return renderToWriter(c, "chart", []string{`"force":{},?`}, w...)
+}
+
+// This function takes a given chart and generates the set of options in a
+// JS compatible Go struct which can be passed to the setOption method within
+// the echart library
+func (c *Graph) GenerateOptions() (r map[string]interface{}) {
+	c.validateOpts()
+
+	r = make(map[string]interface{})
+
+	r["title"] = structs.Map(c.TitleOpts)
+	r["tooltip"] = structs.Map(c.TooltipOpts)
+	r["legend"] = structs.Map(c.LegendOpts)
+
+	// showing the toolbox component is a bit tricky right now and does not
+	// seem to be fully supported by go-echarts
+	//if c.ToolboxOpts.Show {
+	//r["toolbox"] = generateToolboxOpts(c.ToolboxOpts)
+	//}
+
+	if len(c.DataZoomOptsList) > 0 {
+		r["dataZoom"] = generateDataZoomOpts(c.DataZoomOptsList)
+	}
+
+	if len(c.VisualMapOptsList) > 0 {
+		r["visualMap"] = generateVisualMapOptsList(c.VisualMapOptsList)
+	}
+
+	//if c.HasXYAxis {
+	//r["xAxis"] = generateXAxis(c.XAxisOptsList)
+	//r["yAxis"] = generateYAxis(c.YAxisOptsList)
+	//}
+
+	r["series"] = generateSeries(c.Series)
+
+	if c.Theme == "white" {
+		r["color"] = generateColors(c.Colors)
+	}
+
+	if c.BackgroundColor != "" {
+		r["backgroundColor"] = generateBackgroundColors(c.BackgroundColor)
+	}
+	return
 }
