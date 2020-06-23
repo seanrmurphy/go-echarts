@@ -1,4 +1,4 @@
-module github.com/go-echarts/go-echarts
+module github.com/seanrmurphy/go-echarts
 
 go 1.13
 
