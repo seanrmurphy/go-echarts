@@ -6,7 +6,7 @@ import (
 	//"syscall/js"
 
 	"github.com/fatih/structs"
-	"github.com/go-echarts/go-echarts/datatypes"
+	"github.com/seanrmurphy/go-echarts/datatypes"
 )
 
 // Need to check the following to see if we need specific function for them or

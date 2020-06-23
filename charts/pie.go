@@ -4,7 +4,7 @@ import (
 	"io"
 
 	"github.com/fatih/structs"
-	"github.com/go-echarts/go-echarts/datatypes"
+	"github.com/seanrmurphy/go-echarts/datatypes"
 )
 
 // Pie represents a pie chart.

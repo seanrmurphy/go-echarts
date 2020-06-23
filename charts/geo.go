@@ -5,9 +5,9 @@ import (
 	"io"
 	"log"
 
-	"github.com/go-echarts/go-echarts/datatypes"
+	"github.com/seanrmurphy/go-echarts/datatypes"
 
-	"github.com/go-echarts/go-echarts/datasets"
+	"github.com/seanrmurphy/go-echarts/datasets"
 )
 
 // GeoComponentOpts is the option set for geo component.

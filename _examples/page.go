@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/go-echarts/go-echarts/charts"
+	"github.com/seanrmurphy/go-echarts/charts"
 )
 
 func pageHandler(w http.ResponseWriter, _ *http.Request) {

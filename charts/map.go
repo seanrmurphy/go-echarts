@@ -1,10 +1,10 @@
 package charts
 
 import (
-	"github.com/go-echarts/go-echarts/datatypes"
+	"github.com/seanrmurphy/go-echarts/datatypes"
 	"io"
 
-	"github.com/go-echarts/go-echarts/datasets"
+	"github.com/seanrmurphy/go-echarts/datasets"
 )
 
 // Map represents a map chart.
